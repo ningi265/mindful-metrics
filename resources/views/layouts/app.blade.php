@@ -208,7 +208,7 @@
         .sidebar-toggle {
             position: absolute;
             top: 20px;
-            right: -12px;
+            right: 16px;
             width: 24px;
             height: 24px;
             background: var(--accent-blue);
@@ -423,8 +423,8 @@
         /* Dashboard Card Styles */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
             margin-bottom: 24px;
         }
 
@@ -465,7 +465,7 @@
         /* Stats Cards */
         .stats-card {
             position: relative;
-            padding: 24px;
+            padding: 16px;
         }
 
         .stats-header {
@@ -475,8 +475,8 @@
         }
 
         .stats-icon {
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             border-radius: var(--border-radius-sm);
             display: flex;
             align-items: center;
@@ -492,9 +492,9 @@
         }
 
         .stats-value {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin: 15px 0 8px;
+            margin: 12px 0 6px;
             letter-spacing: -0.5px;
         }
 
@@ -826,6 +826,55 @@
         .animate-scaleIn {
             animation: scaleIn 0.4s ease forwards;
         }
+
+        /* Add this to your existing CSS */
+@media (min-width: 768px) and (max-width: 1440px) {
+    .grid-container {
+        gap: 16px;
+    }
+
+    .stats-card {
+        padding: 16px;
+    }
+
+    .stats-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .stats-value {
+        font-size: 1.5rem;
+        margin: 10px 0 6px;
+    }
+
+    .stats-subtext {
+        font-size: 0.8rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
+
+    .trend-indicator {
+        font-size: 0.7rem;
+        padding: 3px 6px;
+    }
+}
+
+/* Adjust the existing media query */
+@media (max-width: 1280px) {
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr); /* Keep 4 columns until lower breakpoint */
+    }
+}
+
+/* Modify this existing breakpoint */
+@media (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
         
         /* Responsive Styles */
         @media (max-width: 1280px) {
@@ -833,6 +882,25 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+
+        /* Additional responsive tweaks */
+@media (max-width: 1400px) {
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1280px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-container, .charts-container {
+        grid-template-columns: 1fr;
+    }
+}
         
         @media (max-width: 768px) {
             :root {

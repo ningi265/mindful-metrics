@@ -1,0 +1,241 @@
+/* resources/css/chart-styles.css */
+
+/* Modern Chart Styles */
+.modern-chart {
+    --chart-primary: var(--accent-blue, #3b82f6);
+    --chart-secondary: var(--accent-green, #10b981);
+    --chart-tertiary: var(--accent-purple, #8b5cf6);
+    --chart-quaternary: var(--accent-amber, #f59e0b);
+    --chart-negative: var(--accent-red, #ef4444);
+    
+    --chart-line-width: 3px;
+    --chart-point-radius: 4px;
+    --chart-point-hover-radius: 6px;
+    --chart-tension: 0.4;
+    
+    background: var(--card-bg);
+    border-radius: var(--border-radius-lg, 16px);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.05));
+}
+
+.modern-chart:hover {
+    box-shadow: var(--shadow-md, 0 4px 6px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05));
+    transform: translateY(-2px);
+}
+
+.modern-chart .card-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modern-chart .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modern-chart .card-title svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--chart-primary);
+}
+
+.modern-chart .time-select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--primary-text);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modern-chart .time-select:hover {
+    border-color: var(--chart-primary);
+}
+
+.modern-chart .chart-container {
+    padding: 16px 16px 24px;
+    position: relative;
+}
+
+.modern-chart .chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 0 24px;
+    margin-top: 12px;
+}
+
+.modern-chart .legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--secondary-text);
+    gap: 6px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.modern-chart .legend-item:hover {
+    background: var(--content-bg);
+}
+
+.modern-chart .legend-item.inactive {
+    opacity: 0.5;
+}
+
+.modern-chart .legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+
+.modern-chart .chart-footer {
+    padding: 0 24px 16px;
+}
+
+.modern-chart .chart-insights {
+    font-size: 0.875rem;
+    color: var(--secondary-text);
+    display: flex;
+    gap: 16px;
+}
+
+.modern-chart .insight-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.modern-chart .insight-value {
+    font-weight: 600;
+    color: var(--primary-text);
+}
+
+.modern-chart .insight-positive {
+    color: var(--chart-secondary);
+}
+
+.modern-chart .insight-negative {
+    color: var(--chart-negative);
+}
+
+/* Chart Loading Animation */
+.modern-chart .chart-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--card-bg-rgb, 255, 255, 255), 0.7);
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modern-chart .chart-loading.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modern-chart .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(var(--chart-primary-rgb, 59, 130, 246), 0.2);
+    border-radius: 50%;
+    border-top-color: var(--chart-primary);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Custom Chart Tooltip */
+.chart-custom-tooltip {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    pointer-events: none;
+    transition: all 0.2s ease;
+    z-index: 100;
+    max-width: 200px;
+}
+
+.chart-tooltip-header {
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 8px;
+    color: var(--primary-text);
+}
+
+.chart-tooltip-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    font-size: 0.75rem;
+}
+
+.chart-tooltip-color {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    margin-right: 8px;
+}
+
+.chart-tooltip-label {
+    flex: 1;
+    color: var(--secondary-text);
+}
+
+.chart-tooltip-value {
+    font-weight: 600;
+    color: var(--primary-text);
+}
+
+/* Gradient Backgrounds for Charts */
+.chart-gradient-blue {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.02) 100%);
+}
+
+.chart-gradient-green {
+    background: linear-gradient(180deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.02) 100%);
+}
+
+.chart-gradient-purple {
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.02) 100%);
+}
+
+.chart-gradient-amber {
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.02) 100%);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .modern-chart .chart-legend {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .modern-chart .chart-insights {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

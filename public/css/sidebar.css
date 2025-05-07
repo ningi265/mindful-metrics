@@ -1,0 +1,111 @@
+/* public/css/sidebar.css */
+
+/* Sidebar Styles */
+.sidebar-wrapper {
+    --sidebar-width: 16rem;
+    --sidebar-collapsed-width: 5rem;
+    --sidebar-transition-duration: 300ms;
+    --sidebar-transition-timing: ease-in-out;
+}
+
+/* Custom Scrollbar for Sidebar */
+.sidebar-wrapper aside::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar-wrapper aside::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-wrapper aside::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 2px;
+}
+
+/* Tooltip for collapsed sidebar */
+.sidebar-tooltip {
+    position: relative;
+}
+
+.sidebar-tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 10px;
+    padding: 4px 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 100;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.sidebar-tooltip:hover::before {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent rgba(0, 0, 0, 0.8) transparent transparent;
+    margin-left: 0;
+    z-index: 100;
+}
+
+/* Sidebar toggle button pulse animation */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.8);
+    }
+    80%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes pulse-dot {
+    0% {
+        transform: scale(0.8);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.8);
+    }
+}
+
+.sidebar-toggle-pulse::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgba(59, 130, 246, 0.3);
+    animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar-wrapper aside {
+        width: 280px !important;
+    }
+}
+
+/* Dark mode adjustments */
+.dark .sidebar-tooltip::after {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+}
+
+.dark .sidebar-tooltip::before {
+    border-color: transparent rgba(255, 255, 255, 0.9) transparent transparent;
+}
