@@ -6,6 +6,7 @@
     <title>Dashboard</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/profile-styles.css') }}">
     <style>
         /* Base Variables */
         :root {
@@ -876,8 +877,8 @@
     }
 }
         
-        /* Responsive Styles */
-        @media (max-width: 1280px) {
+/* Responsive Styles */
+@media (max-width: 1280px) {
             .grid-container {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -889,20 +890,17 @@
         grid-template-columns: repeat(4, 1fr);
     }
 }
-
 @media (max-width: 1280px) {
     .grid-container {
         grid-template-columns: repeat(2, 1fr); 
     }
 }
-
 @media (max-width: 768px) {
     .grid-container, .charts-container {
         grid-template-columns: 1fr;
     }
 }
-        
-        @media (max-width: 768px) {
+@media (max-width: 768px) {
             :root {
                 --sidebar-width: 0px;
                 --sidebar-collapsed-width: 0px;
@@ -968,6 +966,10 @@
             }
         }
     </style>
+
+
+
+
 </head>
 <body class="sidebar-collapsed">
     <!-- Mobile Menu Toggle -->
@@ -1097,28 +1099,10 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="content">
-            <div class="page-header">
-                <h1>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="14" width="7" height="7"></rect>
-                        <rect x="3" y="14" width="7" height="7"></rect>
-                    </svg>
-                    Dashboard Overview
-                </h1>
-                <div class="date">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                    Today: May 6, 2025
-                </div>
-            </div>
             
+            @yield('page_header')
             @yield('content')
+            @yield('styles')
         </div>
     </div>
 
