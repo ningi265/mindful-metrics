@@ -186,11 +186,12 @@
         }
         
         .sidebar-header {
-            padding: 0 24px;
+            padding: 0 24px 0 60px;
             height: var(--header-height);
             display: flex;
             align-items: center;
             border-bottom: 1px solid var(--sidebar-border);
+            position: relative;
         }
         
         .sidebar-header h2 {
@@ -199,41 +200,74 @@
             font-weight: 600;
             letter-spacing: 0.5px;
             white-space: nowrap;
-            transition: opacity var(--transition-speed);
+            transition: opacity var(--transition-speed), transform var(--transition-speed);
         }
         
         .sidebar-collapsed .sidebar-header h2 {
             opacity: 0;
+            transform: translateX(-20px);
         }
         
         .sidebar-toggle {
             position: absolute;
-            top: 20px;
-            right: 16px;
-            width: 24px;
-            height: 24px;
-            background: var(--accent-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 11;
-            box-shadow: var(--shadow-md);
-            border: 2px solid var(--content-bg);
-            transition: all var(--transition-speed);
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 11;
+    transition: all var(--transition-speed);
+    border-radius: 4px;
+    padding: 5px;
         }
         
         .sidebar-toggle svg {
-            width: 14px;
-            height: 14px;
-            stroke: white;
-            transition: transform var(--transition-speed);
+            width: 18px;
+    height: 18px;
+    stroke: var(--sidebar-text);
+    stroke-width: 2.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.8;
         }
         
         .sidebar-collapsed .sidebar-toggle svg {
             transform: rotate(180deg);
         }
+        .sidebar-toggle:hover svg {
+    stroke: var(--accent-blue);
+    opacity: 1;
+    transform: scale(1.1);
+}
+/* Active/pressed state */
+.sidebar-toggle:active {
+    transform: translateY(-50%) scale(0.92);
+}
+
+/* Add a subtle tooltip */
+.sidebar-toggle::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 110%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.sidebar-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Very subtle background on hover */
+}
         
         .sidebar-menu {
             padding: 16px 0;
@@ -964,11 +998,11 @@
             .page-header .date {
                 align-self: flex-start;
             }
+            .sidebar-header {
+        padding: 0 24px;
+    }
         }
     </style>
-
-
-
 
 </head>
 <body class="sidebar-collapsed">
@@ -1002,12 +1036,11 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
-            <h2>Mindful Metrics</h2>
+           
             <div class="sidebar-toggle" id="sidebar-toggle">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
+            @include('components.icons.sidebar-toggle')
             </div>
+            <h2>Mindful Metrics</h2>
         </div>
         <div class="sidebar-menu">
             <a href="#" class="active">
@@ -1171,6 +1204,28 @@
                 element.classList.add('animate-fadeIn');
             });
         });
+        // Enhanced toggle animation
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    
+    // Add hover effect
+    sidebarToggle.addEventListener('mouseenter', function() {
+        this.querySelector('svg').style.stroke = 'var(--accent-blue)';
+    });
+    
+    sidebarToggle.addEventListener('mouseleave', function() {
+        this.querySelector('svg').style.stroke = '';
+    });
+    
+    // Add click animation
+    sidebarToggle.addEventListener('click', function() {
+        // Add a slight scale effect on click
+        this.style.transform = 'translateY(-50%) scale(0.9)';
+        setTimeout(() => {
+            this.style.transform = 'translateY(-50%)';
+        }, 150);
+    });
+});
     </script>
 </body>
 </html>
