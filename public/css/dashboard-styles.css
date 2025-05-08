@@ -1,0 +1,1158 @@
+/* =========== Base Styles and Variables =========== */
+:root {
+    --primary-gradient: linear-gradient(135deg, var(--accent-blue) 0%, #4f46e5 100%);
+    --secondary-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --danger-gradient: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    --warning-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --purple-gradient: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+  
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --border-radius: 16px;
+    --transition-speed: 0.3s;
+  
+    /* Theme colors */
+    --blue-primary: #4f46e5;
+    --blue-light: #6366f1;
+    --green-primary: #10b981;
+    --green-light: #34d399;
+    --red-primary: #ef4444;
+    --red-light: #f87171;
+    --amber-primary: #f59e0b;
+    --amber-light: #fbbf24;
+    --purple-primary: #8b5cf6;
+    --purple-light: #a78bfa;
+  }
+  
+  /* =========== Page Header =========== */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .page-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary-text);
+    margin: 0;
+  }
+  
+  .page-header h1 svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--blue-primary);
+  }
+  
+  .page-header .date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+    font-weight: 500;
+  }
+  
+  .page-header .date svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--blue-primary);
+  }
+  
+  /* =========== General Layout Containers =========== */
+  .stats-overview,
+  .charts-row,
+  .popular-items-row,
+  .tables-row {
+    display: grid;
+    gap: 24px;
+    margin-bottom: 24px;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .stats-overview {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+    margin-bottom: 28px;
+    transition: all var(--transition-speed);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 4px 2px 8px;
+    position: relative;
+    width: 100%; /* Ensure it takes full width */
+  }
+  
+  .stats-overview::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Add scroll indicator for smaller screens */
+  @media (max-width: 1024px) {
+    .stats-overview::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 30px;
+      background: linear-gradient(to right, transparent, var(--card-bg));
+      pointer-events: none;
+      opacity: 0.8;
+    }
+  }
+  
+  .charts-row,
+  .popular-items-row,
+  .tables-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: 1280px) {
+    .stats-overview {
+      flex-wrap: nowrap; /* Ensure no wrapping even on smaller screens */
+    }
+  
+    .stats-overview .stat-card {
+      min-width: 180px; /* Smaller minimum width to fit more cards */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .stats-overview {
+      flex-wrap: wrap; /* Allow wrapping on mobile */
+    }
+  
+    .stats-overview .stat-card {
+      min-width: 160px; /* Slightly larger for better readability */
+      flex: 1 1 45%; /* Two cards per row on very small screens */
+    }
+  }
+  
+  .stats-overview .stat-card {
+    flex: 1 1 0; /* Equal width distribution */
+    min-width: 0; /* Allow cards to shrink below their content size */
+    max-width: none;
+    transition: all var(--transition-speed);
+  }
+  
+  /* Entrance animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Staggered animations for sections */
+  .stats-overview {
+    animation-delay: 0.1s;
+  }
+  
+  .charts-row {
+    animation-delay: 0.2s;
+  }
+  
+  .popular-items-row {
+    animation-delay: 0.3s;
+  }
+  
+  .tables-row {
+    animation-delay: 0.4s;
+  }
+  
+  /* Card Base Styles */
+  .stat-card,
+  .chart-card,
+  .popular-card,
+  .table-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: all var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1); /* Improved easing */
+    position: relative;
+    border: 1px solid var(--border-color);
+    will-change: transform, box-shadow; /* Performance optimization */
+  }
+  
+  .stat-card:hover,
+  .chart-card:hover,
+  .popular-card:hover,
+  .table-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+  }
+  
+  /* Enhanced Stat Cards */
+  .stat-card {
+    padding: 18px; /* Increased padding */
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Add colored accent bar on left side */
+  .stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    transition: all var(--transition-speed) ease;
+    opacity: 0;
+  }
+  
+  .stat-card:hover::before {
+    opacity: 1;
+  }
+  
+  /* Card color accents */
+  .sales-card::before {
+    background: var(--primary-gradient);
+  }
+  
+  .orders-card::before {
+    background: var(--purple-gradient);
+  }
+  
+  .customers-card::before {
+    background: var(--secondary-gradient);
+  }
+  
+  .value-card::before {
+    background: var(--warning-gradient);
+  }
+  
+  .stat-icon {
+    width: 46px; /* Slightly larger */
+    height: 46px; /* Slightly larger */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--content-bg);
+    transition: all var(--transition-speed) ease;
+  }
+  
+  .stat-icon svg {
+    width: 24px;
+    height: 24px;
+    transition: all var(--transition-speed) ease;
+  }
+  
+  /* Icon colors */
+  .sales-card .stat-icon svg {
+    stroke: var(--blue-primary);
+  }
+  
+  .orders-card .stat-icon svg {
+    stroke: var(--purple-primary);
+  }
+  
+  .customers-card .stat-icon svg {
+    stroke: var(--green-primary);
+  }
+  
+  .value-card .stat-icon svg {
+    stroke: var(--amber-primary);
+  }
+  
+  /* Icon hover effects */
+  .sales-card:hover .stat-icon {
+    background: var(--blue-primary);
+  }
+  
+  .orders-card:hover .stat-icon {
+    background: var(--purple-primary);
+  }
+  
+  .customers-card:hover .stat-icon {
+    background: var(--green-primary);
+  }
+  
+  .value-card:hover .stat-icon {
+    background: var(--amber-primary);
+  }
+  
+  .stat-card:hover .stat-icon svg {
+    stroke: white;
+    transform: scale(1.1); /* Subtle scale effect on hover */
+  }
+  
+  .stat-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .stat-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--secondary-text);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  
+  .stat-value {
+    font-size: 1.65rem; /* Slightly larger */
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    transition: all var(--transition-speed) ease;
+  }
+  
+  .stat-card:hover .stat-value {
+    transform: translateY(-2px); /* Subtle lift effect */
+  }
+  
+  .stat-meta {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--muted-text);
+    margin-top: auto;
+  }
+  
+  .trend {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+  }
+  
+  .trend svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+  }
+  
+  .trend.up {
+    color: var(--green-primary);
+    background-color: rgba(16, 185, 129, 0.1);
+  }
+  
+  .trend.down {
+    color: var(--red-primary);
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+  
+  .trend.neutral {
+    color: #6b7280;
+    background-color: rgba(107, 114, 128, 0.1);
+  }
+  
+  .stat-card:hover .trend.up {
+    background-color: rgba(16, 185, 129, 0.2); /* Slightly darker on hover */
+  }
+  
+  .stat-card:hover .trend.down {
+    background-color: rgba(239, 68, 68, 0.2); /* Slightly darker on hover */
+  }
+  
+  .stat-card:hover .trend.neutral {
+    background-color: rgba(107, 114, 128, 0.2); /* Slightly darker on hover */
+  }
+  
+  .divider {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--muted-text);
+    margin: 0 8px;
+    opacity: 0.5;
+  }
+  
+  /* Chart Cards */
+  .chart-card,
+  .popular-card,
+  .table-card {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    z-index: 5;
+  }
+  
+  .card-title {
+    font-size: 1.05rem; /* Slightly larger */
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Slightly larger gap */
+  }
+  
+  .card-title svg {
+    width: 20px; /* Slightly larger */
+    height: 20px; /* Slightly larger */
+    stroke: var(--accent-blue);
+    transition: all var(--transition-speed) ease;
+  }
+  
+  /* Colors for different chart cards */
+  #ordersChart .card-title svg {
+    stroke: var(--blue-primary);
+  }
+  
+  #ordersChart:hover .card-title svg {
+    stroke: var(--blue-light);
+  }
+  
+  #inventoryChart .card-title svg {
+    stroke: var(--green-primary);
+  }
+  
+  #inventoryChart:hover .card-title svg {
+    stroke: var(--green-light);
+  }
+  
+  .card-actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  /* Enhanced time selector */
+  .time-select {
+    padding: 8px 14px;
+    border-radius: 10px; /* Slightly more rounded */
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--primary-text);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 32px;
+  }
+  
+  .time-select:hover {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  }
+  
+  .time-select:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+  }
+  
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px; /* Slightly more rounded */
+    background-color: var(--content-bg);
+    color: var(--secondary-text);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+  }
+  
+  .btn-icon:hover {
+    background-color: var(--accent-blue);
+    color: white;
+    transform: translateY(-2px); /* Subtle lift effect */
+  }
+  
+  .btn-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .btn-text {
+    padding: 8px 16px;
+    border-radius: 10px; /* Slightly more rounded */
+    background-color: transparent;
+    color: var(--accent-blue);
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .btn-text:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+    transform: translateX(2px); /* Subtle shift effect */
+  }
+  
+  /* Add arrow animation to btn-text */
+  .btn-text .arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+  
+  .btn-text:hover .arrow {
+    transform: translateX(3px);
+  }
+  
+  .chart-container {
+    min-height: 320px;
+    width: 100%;
+    padding: 20px 24px 24px;
+    position: relative;
+    transition: all var(--transition-speed) ease;
+  }
+  
+  /* Add subtle hover effect to chart containers */
+  .chart-container:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Add animation for charts to render */
+  @keyframes chartFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  #ordersLineChart,
+  #inventoryLineChart {
+    animation: chartFadeIn 0.8s ease-out forwards;
+  }
+  
+  /* Loading state for charts */
+  .chart-container.is-loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  .chart-container.is-loading::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(79, 70, 229, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--accent-blue);
+    animation: spin 1s linear infinite;
+    z-index: 11;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  
+  /* Popular Items */
+  .popular-items-list {
+    padding: 16px 24px 24px;
+  }
+  
+  .popular-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    gap: 16px;
+    border-bottom: 1px solid var(--border-color);
+    transition: all var(--transition-speed) ease;
+  }
+  
+  .popular-item:last-child {
+    border-bottom: none;
+  }
+  
+  .popular-item:hover {
+    transform: translateX(5px); /* Enhanced hover effect */
+    background-color: rgba(59, 130, 246, 0.05);
+  }
+  
+  .item-rank {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: var(--content-bg);
+    color: var(--secondary-text);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+  }
+  
+  .popular-item:hover .item-rank {
+    background-color: var(--accent-blue);
+    color: white;
+  }
+  
+  /* Different colors for most popular vs least popular */
+  .popular-card:nth-child(1) .popular-item:hover .item-rank {
+    background-color: var(--blue-primary);
+  }
+  
+  .popular-card:nth-child(2) .popular-item:hover .item-rank {
+    background-color: var(--red-primary);
+  }
+  
+  .item-info {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .item-name {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all var(--transition-speed) ease;
+  }
+  
+  .popular-item:hover .item-name {
+    color: var(--accent-blue);
+  }
+  
+  .popular-card:nth-child(1) .popular-item:hover .item-name {
+    color: var(--blue-primary);
+  }
+  
+  .popular-card:nth-child(2) .popular-item:hover .item-name {
+    color: var(--red-primary);
+  }
+  
+  .item-progress {
+    height: 8px;
+    background-color: var(--content-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease-out;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Progress bar styles for most popular */
+  .popular-card:nth-child(1) .progress-bar {
+    background: var(--primary-gradient);
+  }
+  
+  /* Progress bar styles for least popular */
+  .popular-card:nth-child(2) .progress-bar {
+    background: var(--danger-gradient);
+  }
+  
+  /* Add shine animation to progress bars */
+  .progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+  
+  .item-count {
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 4px 10px;
+    border-radius: 12px;
+    transition: all var(--transition-speed) ease;
+    background: rgba(79, 70, 229, 0.1);
+    color: var(--blue-primary);
+  }
+  
+  .popular-card:nth-child(2) .item-count {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--red-primary);
+  }
+  
+  .popular-item:hover .item-count {
+    color: white;
+  }
+  
+  .popular-card:nth-child(1) .popular-item:hover .item-count {
+    background: var(--blue-primary);
+  }
+  
+  .popular-card:nth-child(2) .popular-item:hover .item-count {
+    background: var(--red-primary);
+  }
+  
+  /* Tables */
+  .table-container {
+    padding: 0 24px 24px;
+    overflow-x: auto;
+  }
+  
+  .data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.875rem;
+  }
+  
+  .data-table th {
+    text-align: left;
+    padding: 16px 24px;
+    font-weight: 600;
+    color: var(--secondary-text);
+    border-bottom: 2px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background-color: var(--card-bg);
+    z-index: 10;
+  }
+  
+  .data-table td {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-color);
+    transition: all var(--transition-speed) ease;
+  }
+  
+  .data-table tr {
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+  }
+  
+  .data-table tr:hover td {
+    background-color: rgba(79, 70, 229, 0.05);
+  }
+  
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  /* Enhanced status indicators */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    position: relative;
+    transition: all var(--transition-speed) ease;
+  }
+  
+  .status::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+    transition: all var(--transition-speed) ease;
+  }
+  
+  .status-ready {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--green-primary);
+  }
+  
+  .status-ready::before {
+    background-color: var(--green-primary);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  }
+  
+  .status-pending {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--amber-primary);
+  }
+  
+  .status-pending::before {
+    background-color: var(--amber-primary);
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+  }
+  
+  .status-low {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--red-primary);
+  }
+  
+  .status-low::before {
+    background-color: var(--red-primary);
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+  }
+  
+  /* Enhance hover effect for status */
+  tr:hover .status-ready {
+    background-color: rgba(16, 185, 129, 0.2);
+  }
+  
+  tr:hover .status-pending {
+    background-color: rgba(245, 158, 11, 0.2);
+  }
+  
+  tr:hover .status-low {
+    background-color: rgba(239, 68, 68, 0.2);
+  }
+  
+  /* Adjust table card colors */
+  .table-card:nth-child(1) .card-actions .btn-text {
+    color: var(--purple-primary);
+  }
+  
+  .table-card:nth-child(1) .card-actions .btn-text:hover {
+    background-color: rgba(139, 92, 246, 0.1);
+  }
+  
+  .table-card:nth-child(2) .card-actions .btn-text {
+    color: var(--green-primary);
+  }
+  
+  .table-card:nth-child(2) .card-actions .btn-text:hover {
+    background-color: rgba(16, 185, 129, 0.1);
+  }
+  
+  /* Add skeleton loading animation */
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .is-loading .item-name,
+  .is-loading .item-progress,
+  .is-loading .item-count,
+  .is-loading td {
+    position: relative;
+    color: transparent !important;
+    overflow: hidden;
+  }
+  
+  .is-loading .item-name::after,
+  .is-loading .item-progress::after,
+  .is-loading .item-count::after,
+  .is-loading td::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--content-bg);
+    animation: pulse 1.5s infinite ease-in-out;
+    border-radius: 4px;
+  }
+  
+  /* Empty state styling */
+  .empty-state {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--secondary-text);
+  }
+  
+  .empty-state svg {
+    width: 48px;
+    height: 48px;
+    stroke: var(--border-color);
+    margin-bottom: 16px;
+  }
+  
+  .empty-state-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .empty-state-text {
+    font-size: 0.875rem;
+    color: var(--muted-text);
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  /* Add value change animation */
+  @keyframes valueChange {
+    0% {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .value-updated {
+    animation: valueChange 0.5s ease-out;
+  }
+  
+  /* Dark theme compatibility improvements */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+      --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    }
+  
+    .chart-container canvas {
+      filter: brightness(0.95);
+    }
+  
+    .progress-bar::after {
+      background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
+    }
+  
+    .chart-container.is-loading::after {
+      background: rgba(0, 0, 0, 0.5);
+    }
+  
+    .chart-container.is-loading::before {
+      border: 3px solid rgba(79, 70, 229, 0.2);
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1280px) {
+    .page-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  
+    .page-header .date {
+      margin-left: 4px;
+    }
+  
+    .stats-overview {
+      padding-bottom: 8px; /* Add space for scrolling shadow */
+    }
+  
+    .stat-card {
+      min-width: 220px;
+      padding: 20px;
+    }
+  
+    .charts-row,
+    .popular-items-row,
+    .tables-row {
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .charts-row,
+    .popular-items-row,
+    .tables-row {
+      grid-template-columns: 1fr 1fr; /* Keep two columns even on smaller screens */
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .card-header {
+      padding: 16px 20px;
+    }
+  
+    .card-title {
+      font-size: 1rem;
+    }
+  
+    .chart-container {
+      height: 280px !important;
+      padding: 16px 20px 20px;
+    }
+  
+    .popular-items-list {
+      padding: 12px 20px 20px;
+    }
+  
+    .popular-item {
+      padding: 12px 0;
+    }
+  
+    .data-table th,
+    .data-table td {
+      padding: 12px 16px;
+    }
+  
+    .item-rank {
+      width: 32px;
+      height: 32px;
+    }
+  }
+  
+  /* Additional media query for very large screens */
+  @media (min-width: 1920px) {
+    .stats-overview .stat-card {
+      flex: 1 1 0; /* Keep equal distribution on large screens */
+    }
+  }
+  
+  /* Ensure chart rows take full width */
+  .charts-row {
+    width: 100%;
+  }
+  
+  /* Add new feature: tooltip for stat cards */
+  .stat-card {
+    position: relative;
+  }
+  
+  .stat-card::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--card-bg);
+    color: var(--primary-text);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    box-shadow: var(--card-shadow);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-speed) ease;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 100;
+    border: 1px solid var(--border-color);
+  }
+  
+  .stat-card:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  
+  /* Add subtle pulse effect to highlight new data */
+  @keyframes pulse-highlight {
+    0% {
+      box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+    }
+  }
+  
+  .highlight-new {
+    animation: pulse-highlight 2s ease-out;
+  }
+  
+  /* Add subtle entrance animations for cards */
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .animate-in-right {
+    animation: fadeInRight 0.5s ease-out forwards;
+  }
+  
+  /* Add print styles for reports */
+  @media print {
+    body {
+      background: white !important;
+      color: black !important;
+    }
+  
+    .stats-overview,
+    .charts-row,
+    .popular-items-row,
+    .tables-row {
+      display: block;
+      page-break-inside: avoid;
+      margin-bottom: 20px;
+    }
+  
+    .stat-card,
+    .chart-card,
+    .popular-card,
+    .table-card {
+      border: 1px solid #ddd !important;
+      box-shadow: none !important;
+      break-inside: avoid;
+      margin-bottom: 15px;
+    }
+  
+    .btn-icon,
+    .btn-text,
+    .time-select {
+      display: none !important;
+    }
+  
+    .chart-container {
+      height: 250px !important;
+    }
+  }
+  

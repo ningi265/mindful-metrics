@@ -1,0 +1,391 @@
+/* 
+ * Customer Insights Report Styles
+ * This stylesheet contains specific styles for the customer insights report page
+ */
+
+/* Customer Report Container */
+.customers-report {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Customer Metrics Cards */
+.metric-icon.total-customers {
+    background-color: #3b82f6;
+}
+
+.metric-icon.active {
+    background-color: #10b981;
+}
+
+.metric-icon.new-customers {
+    background-color: #f59e0b;
+}
+
+.metric-icon.retention {
+    background-color: #8b5cf6;
+}
+
+/* Customer Chart Legend Colors */
+.legend-color.total {
+    background-color: #3b82f6;
+}
+
+.legend-color.new {
+    background-color: #f59e0b;
+}
+
+.legend-color.active {
+    background-color: #10b981;
+}
+
+/* Customer List Styles */
+.top-customers {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.customer-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: var(--bg-light);
+    transition: all 0.2s ease;
+}
+
+.customer-item:hover {
+    background-color: var(--bg-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.customer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+
+.customer-info {
+    flex-grow: 1;
+}
+
+.customer-info h4 {
+    font-size: 0.938rem;
+    font-weight: 500;
+    margin: 0 0 0.25rem 0;
+}
+
+.customer-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.813rem;
+    color: var(--text-muted);
+}
+
+.customer-value {
+    margin-left: auto;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Customer Segments */
+.segment-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.segment-metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: var(--bg-light);
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+}
+
+.segment-metric-item:hover {
+    background-color: var(--bg-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.segment-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.segment-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-value {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.stat-percentage {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.125rem 0.375rem;
+    border-radius: 1rem;
+}
+
+.stat-percentage.positive {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.stat-percentage.negative {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+/* Customer Demographics Chart */
+.demographics-chart {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .segment-metrics {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+    
+    .customer-stats {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+}
+
+/* Customer Acquisition Funnel */
+.acquisition-funnel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.funnel-stage {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.funnel-label {
+    width: 100px;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.funnel-bar-container {
+    height: 24px;
+    background-color: var(--bg-muted);
+    border-radius: 4px;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.funnel-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.5rem;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.funnel-bar.visitors {
+    background-color: #3b82f6;
+    width: 100%;
+}
+
+.funnel-bar.leads {
+    background-color: #8b5cf6;
+    width: 65%;
+}
+
+.funnel-bar.prospects {
+    background-color: #f59e0b;
+    width: 40%;
+}
+
+.funnel-bar.customers {
+    background-color: #10b981;
+    width: 25%;
+}
+
+/* Customer Journey Map */
+.journey-map {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.journey-map:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+
+.journey-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 2;
+    position: relative;
+}
+
+.journey-point {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.journey-point.active {
+    background-color: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+.journey-point.completed {
+    background-color: #3b82f6;
+}
+
+.journey-point.pending {
+    background-color: var(--bg-muted);
+    color: var(--text-muted);
+}
+
+.journey-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.journey-count {
+    font-size: 0.688rem;
+    color: var(--text-muted);
+}
+
+/* Customer Engagement Metrics */
+.engagement-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.engagement-card {
+    padding: 1rem;
+    background-color: var(--bg-light);
+    border-radius: 0.375rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.engagement-title {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.engagement-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.engagement-change {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.engagement-change.positive {
+    color: #10b981;
+}
+
+.engagement-change.negative {
+    color: #ef4444;
+}
+
+/* Customer Satisfaction Ratings */
+.satisfaction-ratings {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.rating-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.rating-label {
+    width: 120px;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.star {
+    color: #f59e0b;
+}
+
+.star-empty {
+    color: var(--bg-muted);
+}
+
+.rating-count {
+    margin-left: auto;
+    font-size: 0.813rem;
+    color: var(--text-muted);
+}

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/customers-styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/products-styles.css') }}">
     <!-- Additional CSS -->
 @endsection
 
@@ -9,12 +9,11 @@
     <div class="page-header">
         <h1>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
             </svg>
-            Customer Insights Report
+            Product Analytics Report
         </h1>
         <div class="date">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -27,8 +26,8 @@
         </div>
     </div>
 
-    <!-- Customer Report Content -->
-    <div class="customer-report animate-fadeIn">
+    <!-- Product Report Content -->
+    <div class="product-report animate-fadeIn">
         <!-- Report Header -->
         <div class="report-header">
             <div class="report-controls">
@@ -74,29 +73,28 @@
             
             <div class="report-metrics">
                 <div class="metric-card">
-                    <div class="metric-icon total-customers">
+                    <div class="metric-icon total-products">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
                         </svg>
                     </div>
                     <div class="metric-content">
-                        <h3>{{ $customerMetrics['total_customers'] }}</h3>
-                        <p>Total Customers</p>
+                        <h3>{{ $productMetrics['total_products'] }}</h3>
+                        <p>Total Products</p>
                         <div class="metric-trend positive">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                                 <polyline points="17 6 23 6 23 12"></polyline>
                             </svg>
-                            {{ number_format($customerMetrics['growth_percentage'], 1) }}%
+                            {{ number_format($productMetrics['growth_percentage'], 1) }}%
                         </div>
                     </div>
                 </div>
                 
                 <div class="metric-card">
-                    <div class="metric-icon new-customers">
+                    <div class="metric-icon new-products">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
                             <line x1="12" y1="8" x2="12" y2="16"></line>
@@ -104,65 +102,63 @@
                         </svg>
                     </div>
                     <div class="metric-content">
-                        <h3>{{ $customerMetrics['new_customers'] }}</h3>
-                        <p>New Customers</p>
+                        <h3>{{ $productMetrics['new_products'] }}</h3>
+                        <p>New Products</p>
                         <div class="metric-trend positive">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                                 <polyline points="17 6 23 6 23 12"></polyline>
                             </svg>
-                            8.4%
+                            4.2%
                         </div>
                     </div>
                 </div>
                  
                 <div class="metric-card">
-                    <div class="metric-icon customer-lifetime">
+                    <div class="metric-icon avg-rating">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                         </svg>
                     </div>
                     <div class="metric-content">
-                        <h3>${{ number_format($customerMetrics['avg_lifetime_value'], 2) }}</h3>
-                        <p>Avg. Lifetime Value</p>
+                        <h3>{{ number_format($productMetrics['avg_rating'], 1) }}</h3>
+                        <p>Avg. Product Rating</p>
                         <div class="metric-trend positive">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                                 <polyline points="17 6 23 6 23 12"></polyline>
                             </svg>
-                            5.2%
+                            0.3
                         </div>
                     </div>
                 </div>
 
                 <div class="metric-card">
-                    <div class="metric-icon retention-rate">
+                    <div class="metric-icon conversion-rate">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="8.5" cy="7" r="4"></circle>
-                            <polyline points="17 11 19 13 23 9"></polyline>
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            <polyline points="17 6 23 6 23 12"></polyline>
                         </svg>
                     </div>
                     <div class="metric-content">
-                        <h3>{{ number_format($customerMetrics['retention_rate'], 1) }}%</h3>
-                        <p>Retention Rate</p>
-                        <div class="metric-trend neutral">
+                        <h3>{{ number_format($productMetrics['conversion_rate'], 1) }}%</h3>
+                        <p>Conversion Rate</p>
+                        <div class="metric-trend positive">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                <polyline points="17 6 23 6 23 12"></polyline>
                             </svg>
-                            0.5%
+                            1.5%
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Customer Growth Chart -->
+        <!-- Product Performance Chart -->
         <div class="report-chart-container">
             <div class="chart-header">
-                <h2>Customer Growth Trend</h2>
+                <h2>Product Performance Trends</h2>
                 <div class="chart-controls">
                     <div class="chart-type-toggle">
                         <button class="chart-type-btn active" data-type="line">
@@ -183,60 +179,73 @@
                     
                     <div class="chart-legend">
                         <div class="legend-item">
-                            <span class="legend-color total"></span>
-                            <span>Total Customers</span>
+                            <span class="legend-color views"></span>
+                            <span>Page Views</span>
                         </div>
                         <div class="legend-item">
-                            <span class="legend-color new"></span>
-                            <span>New Customers</span>
+                            <span class="legend-color sales"></span>
+                            <span>Total Sales</span>
                         </div>
                         <div class="legend-item">
-                            <span class="legend-color returning"></span>
-                            <span>Active Customers</span>
+                            <span class="legend-color revenue"></span>
+                            <span>Revenue</span>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="chart-wrapper">
-                <canvas id="customerGrowthChart" height="350"></canvas>
+                <canvas id="productPerformanceChart" height="350"></canvas>
             </div>
         </div>
         
         <div class="report-details-grid">
-            <!-- Top Customers -->
+            <!-- Top Products -->
             <div class="report-card">
                 <div class="card-header">
-                    <h3>Top Customers</h3>
+                    <h3>Top Performing Products</h3>
                     <button class="btn-text">View All</button>
                 </div>
                 
                 <div class="card-content">
-                    <div class="top-customers">
-                        @foreach($customerMetrics['top_customers'] as $customer)
-                            <div class="customer-item">
-                                <div class="customer-info">
-                                    <div class="customer-avatar">
-                                        <span>{{ strtoupper(substr($customer['name'], 0, 2)) }}</span>
+                    <div class="top-products">
+                        @foreach($productMetrics['top_products'] as $product)
+                            <div class="product-item">
+                                <div class="product-info">
+                                    <div class="product-thumbnail">
+                                        @if(isset($product['image']))
+                                            <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}">
+                                        @else
+                                            <div class="product-placeholder">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                                    <polyline points="21 15 16 10 5 21"></polyline>
+                                                </svg>
+                                            </div>
+                                        @endif
                                     </div>
-                                    <div class="customer-details">
-                                        <h4>{{ $customer['name'] }}</h4>
-                                        <span class="customer-email">{{ $customer['email'] }}</span>
+                                    <div class="product-details">
+                                        <h4>{{ $product['name'] }}</h4>
+                                        <span class="product-category">{{ $product['category'] }}</span>
                                     </div>
                                 </div>
-                                <div class="customer-stats">
+                                <div class="product-stats">
                                     <div class="stat">
-                                        <span class="stat-label">Orders</span>
-                                        <span class="stat-value">{{ $customer['orders'] }}</span>
+                                        <span class="stat-label">Sales</span>
+                                        <span class="stat-value">{{ $product['sales'] }}</span>
                                     </div>
                                     <div class="stat">
-                                        <span class="stat-label">Spent</span>
-                                        <span class="stat-value">${{ number_format($customer['total_spent'], 2) }}</span>
+                                        <span class="stat-label">Revenue</span>
+                                        <span class="stat-value">${{ number_format($product['revenue'], 2) }}</span>
                                     </div>
                                     <div class="stat">
-                                        <span class="stat-label">Last Order</span>
-                                        <span class="stat-value">{{ $customer['last_order'] }}</span>
+                                        <span class="stat-label">Rating</span>
+                                        <span class="stat-value">{{ number_format($product['rating'], 1) }}</span>
                                     </div>
+                                </div>
+                                <div class="product-progress">
+                                    <div class="progress-bar" style="width: {{ $product['performance_percentage'] }}%"></div>
                                 </div>
                             </div>
                         @endforeach
@@ -244,15 +253,16 @@
                 </div>
             </div>
             
-            <!-- Customer Activity -->
+            <!-- Product Variants Performance -->
             <div class="report-card">
                 <div class="card-header">
-                    <h3>Recent Activity</h3>
+                    <h3>Product Variants Performance</h3>
                     <div class="card-actions">
                         <button class="btn-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="3" y1="15" x2="21" y2="15"></line>
                             </svg>
                         </button>
                         <button class="btn-icon">
@@ -266,60 +276,58 @@
                 </div>
                 
                 <div class="card-content">
-                    <div class="activity-timeline">
-                        @foreach($customerMetrics['recent_activities'] as $activity)
-                            <div class="activity-item visible">
-                                <div class="activity-icon {{ $activity['type'] }}">
-                                    @if($activity['type'] == 'purchase')
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <circle cx="9" cy="21" r="1"></circle>
-                                            <circle cx="20" cy="21" r="1"></circle>
-                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                        </svg>
-                                    @elseif($activity['type'] == 'signup')
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="8.5" cy="7" r="4"></circle>
-                                            <line x1="20" y1="8" x2="20" y2="14"></line>
-                                            <line x1="23" y1="11" x2="17" y2="11"></line>
-                                        </svg>
-                                    @elseif($activity['type'] == 'review')
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                        </svg>
-                                    @elseif($activity['type'] == 'return')
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M9 14 4 9l5-5"></path>
-                                            <path d="M4 9h16a6 6 0 0 1 0 12H11"></path>
-                                        </svg>
-                                    @endif
-                                </div>
-                                <div class="activity-content">
-                                    <p class="activity-text">{{ $activity['description'] }}</p>
-                                    <span class="activity-time">{{ $activity['time'] }}</span>
-                                </div>
-                            </div>
-                        @endforeach
+                    <div class="variants-table-container">
+                        <table class="data-table compact">
+                            <thead>
+                                <tr>
+                                    <th>Variant</th>
+                                    <th>Stock</th>
+                                    <th>Sales</th>
+                                    <th>Conversion</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($productMetrics['product_variants'] as $variant)
+                                    <tr>
+                                        <td>
+                                            <div class="variant-info">
+                                                <span class="variant-color" style="background-color: {{ $variant['color_hex'] }}"></span>
+                                                <span>{{ $variant['name'] }}</span>
+                                            </div>
+                                        </td>
+                                        <td>{{ $variant['stock'] }}</td>
+                                        <td>{{ $variant['sales'] }}</td>
+                                        <td>{{ number_format($variant['conversion_rate'], 1) }}%</td>
+                                        <td>
+                                            <span class="status-badge {{ $variant['status_class'] }}">
+                                                {{ $variant['status'] }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
             
-            <!-- Customer Segments -->
+            <!-- Category Distribution -->
             <div class="report-card">
                 <div class="card-header">
-                    <h3>Customer Segments</h3>
+                    <h3>Category Distribution</h3>
                 </div>
                 <div class="card-content">
                     <div class="pie-chart-container">
-                        <canvas id="segmentChart" height="220"></canvas>
+                        <canvas id="categoryChart" height="220"></canvas>
                     </div>
                 </div>
             </div>
             
-            <!-- Key Insights -->
+            <!-- Product Insights -->
             <div class="report-card">
                 <div class="card-header">
-                    <h3>Customer Insights</h3>
+                    <h3>Product Insights</h3>
                 </div>
                 <div class="card-content">
                     <div class="insights-list">
@@ -331,34 +339,35 @@
                                 </svg>
                             </div>
                             <div class="insight-content">
-                                <h4>Customer Growth Acceleration</h4>
-                                <p>New customer acquisition rate has increased by 8.4% compared to the previous period, indicating successful marketing campaigns.</p>
+                                <h4>High-Performance Categories</h4>
+                                <p>The Appetizers category has shown a 12.5% increase in sales volume compared to the previous period, driven by the popularity of new menu items.</p>
                             </div>
                         </div>
                         
                         <div class="insight-item visible">
                             <div class="insight-icon positive">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path>
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    <polyline points="17 6 23 6 23 12"></polyline>
                                 </svg>
                             </div>
                             <div class="insight-content">
-                                <h4>Improved Customer Lifetime Value</h4>
-                                <p>Average customer lifetime value has increased by 5.2%, showing better customer retention and spending patterns over time.</p>
+                                <h4>Improved Conversion Rates</h4>
+                                <p>Overall product conversion rate has increased by 1.5% due to enhanced product descriptions and improved product photography.</p>
                             </div>
                         </div>
                         
                         <div class="insight-item visible">
-                            <div class="insight-icon neutral">
+                            <div class="insight-icon negative">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="12" y1="16" x2="12" y2="12"></line>
-                                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
                                 </svg>
                             </div>
                             <div class="insight-content">
-                                <h4>Stable Retention Rate</h4>
-                                <p>Customer retention rate has remained relatively stable at {{ number_format($customerMetrics['retention_rate'], 1) }}%, with a slight increase of 0.5% from the previous period.</p>
+                                <h4>Underperforming Variants</h4>
+                                <p>The Seafood Platter variant is showing a 5.8% decrease in sales. Consider adjusting pricing or refreshing the presentation.</p>
                             </div>
                         </div>
                     </div>
@@ -366,18 +375,18 @@
             </div>
         </div>
 
-        <!-- Customer Satisfaction Metrics -->
+        <!-- Product Reviews Analysis -->
         <div class="report-card">
             <div class="card-header">
-                <h3>Customer Satisfaction</h3>
+                <h3>Product Reviews Analysis</h3>
                 <div class="card-actions">
                     <button class="btn-text">View Detailed Report</button>
                 </div>
             </div>
             <div class="card-content">
-                <div class="satisfaction-metrics">
-                    <div class="satisfaction-overview">
-                        <div class="satisfaction-score">
+                <div class="reviews-analysis">
+                    <div class="ratings-overview">
+                        <div class="rating-score">
                             <div class="score-circle">
                                 <svg viewBox="0 0 36 36">
                                     <path class="circle-bg"
@@ -391,71 +400,118 @@
                                         d="M18 2.0845
                                         a 15.9155 15.9155 0 0 1 0 31.831
                                         a 15.9155 15.9155 0 0 1 0 -31.831"
-                                        stroke="#10b981"
+                                        stroke="#f59e0b"
                                         stroke-width="3"
                                         fill="none"
-                                        stroke-dasharray="{{ $customerMetrics['satisfaction_score'] * 100 / 5 }}, 100" />
+                                        stroke-dasharray="{{ $productMetrics['avg_rating'] * 100 / 5 }}, 100" />
                                 </svg>
-                                <div class="score-value">{{ number_format($customerMetrics['satisfaction_score'], 1) }}</div>
+                                <div class="score-value">{{ $productMetrics['avg_rating'] }}</div>
                             </div>
-                            <div class="score-label">Overall Satisfaction</div>
+                            <div class="score-label">Overall Rating</div>
                         </div>
-                        <div class="satisfaction-breakdown">
-                            <div class="breakdown-item">
-                                <div class="breakdown-label">Product Quality</div>
-                                <div class="breakdown-bar">
-                                    <div class="progress-bar" style="width: 88%"></div>
+                        <div class="ratings-breakdown">
+                            @foreach($productMetrics['ratings_distribution'] as $rating => $percentage)
+                                <div class="rating-item">
+                                    <div class="stars">
+                                        @for($i = 1; $i <= 5; $i++)
+                                            @if($i <= $rating)
+                                                <svg class="star filled" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                                </svg>
+                                            @else
+                                                <svg class="star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                                </svg>
+                                            @endif
+                                        @endfor
+                                    </div>
+                                    <div class="rating-bar">
+                                        <div class="progress-bar" style="width: {{ $percentage }}%"></div>
+                                    </div>
+                                    <div class="rating-percentage">{{ $percentage }}%</div>
                                 </div>
-                                <div class="breakdown-value">4.4/5</div>
-                            </div>
-                            <div class="breakdown-item">
-                                <div class="breakdown-label">Customer Service</div>
-                                <div class="breakdown-bar">
-                                    <div class="progress-bar" style="width: 94%"></div>
-                                </div>
-                                <div class="breakdown-value">4.7/5</div>
-                            </div>
-                            <div class="breakdown-item">
-                                <div class="breakdown-label">Delivery Speed</div>
-                                <div class="breakdown-bar">
-                                    <div class="progress-bar" style="width: 76%"></div>
-                                </div>
-                            </div>
-                            <div class="breakdown-item">
-                                <div class="breakdown-label">Value for Money</div>
-                                <div class="breakdown-bar">
-                                    <div class="progress-bar" style="width: 82%"></div>
-                                </div>
-                                <div class="breakdown-value">4.1/5</div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
 
-                    <div class="satisfaction-reviews">
-                        <h4>Recent Customer Feedback</h4>
-                        <div class="reviews-list">
-                            @foreach($customerMetrics['recent_reviews'] as $review)
-                                <div class="review-item">
-                                    <div class="review-header">
-                                        <div class="reviewer-name">{{ $review['name'] }}</div>
-                                        <div class="review-rating">
-                                            @for($i = 1; $i <= 5; $i++)
-                                                @if($i <= $review['rating'])
-                                                    <svg class="star filled" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                                    </svg>
-                                                @else
-                                                    <svg class="star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                                    </svg>
-                                                @endif
-                                            @endfor
-                                        </div>
+                    <div class="feedback-topics">
+                        <h4>Common Feedback Topics</h4>
+                        <div class="topics-list">
+                            @foreach($productMetrics['feedback_topics'] as $topic)
+                                <div class="topic-item">
+                                    <div class="topic-name">{{ $topic['name'] }}</div>
+                                    <div class="topic-bar">
+                                        <div class="progress-bar {{ $topic['sentiment'] }}" style="width: {{ $topic['percentage'] }}%"></div>
                                     </div>
-                                    <div class="review-text">{{ $review['comment'] }}</div>
-                                    <div class="review-date">{{ $review['date'] }}</div>
+                                    <div class="topic-percentage">{{ $topic['percentage'] }}%</div>
                                 </div>
                             @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Recommendations -->
+        <div class="report-card">
+            <div class="card-header">
+                <h3>Recommendations</h3>
+            </div>
+            <div class="card-content">
+                <div class="recommendations-grid">
+                    <div class="recommendation-item">
+                        <div class="recommendation-icon optimize">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </div>
+                        <div class="recommendation-content">
+                            <h4>Optimize Product Pricing</h4>
+                            <p>Consider adjusting prices for Seafood Platter and other underperforming items.</p>
+                            <button class="btn-text">View Strategy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-item">
+                        <div class="recommendation-icon expand">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                        </div>
+                        <div class="recommendation-content">
+                            <h4>Expand Appetizers Lineup</h4>
+                            <p>Based on category performance, consider adding 2-3 new appetizer options.</p>
+                            <button class="btn-text">Explore Ideas</button>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-item">
+                        <div class="recommendation-icon restock">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <polyline points="19 12 12 19 5 12"></polyline>
+                            </svg>
+                        </div>
+                        <div class="recommendation-content">
+                            <h4>Restock Popular Variants</h4>
+                            <p>Increase inventory levels for Red and Blue color variants to prevent stockouts.</p>
+                            <button class="btn-text">View Inventory</button>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-item">
+                        <div class="recommendation-icon improve">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="recommendation-content">
+                            <h4>Improve Product Descriptions</h4>
+                            <p>Enhance descriptions for products with lower conversion rates to increase sales.</p>
+                            <button class="btn-text">View Guidelines</button>
                         </div>
                     </div>
                 </div>
@@ -466,13 +522,13 @@
     <!-- Chart.js Integration -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Customer Growth Chart
-            const customerCtx = document.getElementById('customerGrowthChart').getContext('2d');
+            // Product Performance Chart
+            const productCtx = document.getElementById('productPerformanceChart').getContext('2d');
             
             // Prepare data from PHP
-            const customerData = @json($customerData);
+            const productData = @json($productData);
             
-            // Create default data if customerData is empty or undefined
+            // Create default data if productData is empty or undefined
             const defaultData = [];
             const today = new Date();
             for (let i = 0; i < 7; i++) {
@@ -480,33 +536,33 @@
                 date.setDate(today.getDate() - i);
                 defaultData.unshift({
                     date: date.toISOString().split('T')[0],
-                    total_customers: 100 + i * 5,
-                    new_customers: 2 + Math.floor(Math.random() * 4),
-                    active_customers: 80 + Math.floor(Math.random() * 10)
+                    views: 100 + Math.floor(Math.random() * 50),
+                    sales: 20 + Math.floor(Math.random() * 15),
+                    revenue: 500 + Math.floor(Math.random() * 300)
                 });
             }
             
-            const dataToUse = Array.isArray(customerData) && customerData.length > 0 ? customerData : defaultData;
+            const dataToUse = Array.isArray(productData) && productData.length > 0 ? productData : defaultData;
             
             const labels = dataToUse.map(item => {
                 const date = new Date(item.date);
                 return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
             });
             
-            // Map data from the controller's structure to what the chart needs
-            const totalCustomersData = dataToUse.map(item => item.total_customers || 0);
-            const newCustomersData = dataToUse.map(item => item.new_customers || 0);
-            const returningCustomersData = dataToUse.map(item => item.active_customers || 0);
+            // Map data from the controller's structure
+            const viewsData = dataToUse.map(item => item.views || 0);
+            const salesData = dataToUse.map(item => item.sales || 0);
+            const revenueData = dataToUse.map(item => item.revenue || 0);
             
-            // Initialize Customer Growth Chart
-            let customerChart = new Chart(customerCtx, {
+            // Initialize Product Performance Chart
+            let productChart = new Chart(productCtx, {
                 type: 'line',
                 data: {
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Total Customers',
-                            data: totalCustomersData,
+                            label: 'Page Views',
+                            data: viewsData,
                             borderColor: '#8b5cf6',
                             backgroundColor: 'rgba(139, 92, 246, 0.1)',
                             borderWidth: 2,
@@ -515,12 +571,13 @@
                             pointBorderWidth: 2,
                             pointRadius: 4,
                             pointHoverRadius: 6,
+                            yAxisID: 'y',
                             fill: true,
                             tension: 0.3
                         },
                         {
-                            label: 'New Customers',
-                            data: newCustomersData,
+                            label: 'Sales',
+                            data: salesData,
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
                             borderWidth: 2,
@@ -529,12 +586,13 @@
                             pointBorderWidth: 2,
                             pointRadius: 4,
                             pointHoverRadius: 6,
+                            yAxisID: 'y',
                             fill: true,
                             tension: 0.3
                         },
                         {
-                            label: 'Active Customers',
-                            data: returningCustomersData,
+                            label: 'Revenue',
+                            data: revenueData,
                             borderColor: '#f59e0b',
                             backgroundColor: 'rgba(245, 158, 11, 0.1)',
                             borderWidth: 2,
@@ -543,6 +601,7 @@
                             pointBorderWidth: 2,
                             pointRadius: 4,
                             pointHoverRadius: 6,
+                            yAxisID: 'y1',
                             fill: true,
                             tension: 0.3
                         }
@@ -562,8 +621,27 @@
                             }
                         },
                         y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
                             grid: {
                                 borderDash: [5, 5]
+                            },
+                            title: {
+                                display: true,
+                                text: 'Views & Sales'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Revenue ($)'
                             }
                         }
                     },
@@ -573,7 +651,21 @@
                         },
                         tooltip: {
                             mode: 'index',
-                            intersect: false
+                            intersect: false,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.dataset.yAxisID === 'y1') {
+                                        label += '$' + context.parsed.y.toFixed(2);
+                                    } else {
+                                        label += context.parsed.y;
+                                    }
+                                    return label;
+                                }
+                            }
                         }
                     }
                 }
@@ -589,31 +681,29 @@
                     this.classList.add('active');
                     
                     // Update chart type
-                    customerChart.config.type = chartType;
-                    customerChart.update();
+                    productChart.config.type = chartType;
+                    productChart.update();
                 });
             });
             
-            // Customer Segments Pie Chart
-            const segmentCtx = document.getElementById('segmentChart');
+            // Category Distribution Pie Chart
+            const categoryCtx = document.getElementById('categoryChart');
             
-            if (segmentCtx) {
-                const segmentData = [
-                    { segment: 'New', value: {{ $customerMetrics['segment_new'] ?? 5 }} },
-                    { segment: 'Occasional', value: {{ $customerMetrics['segment_occasional'] ?? 30 }} },
-                    { segment: 'Regular', value: {{ $customerMetrics['segment_regular'] ?? 25 }} },
-                    { segment: 'Loyal', value: {{ $customerMetrics['segment_loyal'] ?? 30 }} },
-                    { segment: 'VIP', value: {{ $customerMetrics['segment_vip'] ?? 10 }} }
-                ];
+            if (categoryCtx) {
+                const categoryData = @json($productMetrics['category_distribution']);
                 
-                const segmentChart = new Chart(segmentCtx.getContext('2d'), {
+                const categoryChart = new Chart(categoryCtx.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: segmentData.map(item => item.segment),
+                        labels: categoryData.map(item => item.category),
                         datasets: [{
-                            data: segmentData.map(item => item.value),
+                            data: categoryData.map(item => item.value),
                             backgroundColor: [
-                                '#10b981', '#3b82f6', '#8b5cf6', '#f59e0b', '#ef4444'
+                                '#10b981', // Green
+                                '#3b82f6', // Blue
+                                '#8b5cf6', // Purple
+                                '#f59e0b', // Orange
+                                '#ef4444'  // Red
                             ],
                             borderWidth: 0,
                             hoverOffset: 15
@@ -638,7 +728,7 @@
                                         const value = context.parsed;
                                         const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                         const percentage = Math.round((value / total) * 100);
-                                        return `${label}: ${value} customers (${percentage}%)`;
+                                        return `${label}: ${value} products (${percentage}%)`;
                                     }
                                 }
                             }
@@ -664,7 +754,7 @@
             const downloadCsvBtn = document.querySelector('button:contains("Download CSV")');
             if (downloadCsvBtn) {
                 downloadCsvBtn.addEventListener('click', function() {
-                    window.location.href = '/exports/customer-data.csv?period={{ $period }}';
+                    window.location.href = '/exports/product-data.csv?period={{ $period }}';
                 });
             }
             
@@ -676,26 +766,7 @@
                 });
             }
             
-            // Safely add animations if elements exist
-            function safelyAddAnimations() {
-                // For jQuery selector compatibility
-                // Custom 'contains' selector for vanilla JS
-                if (!Element.prototype.matches) {
-                    Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-                }
-                
-                Document.prototype.querySelector_contains = function(tag, text) {
-                    const elements = this.querySelectorAll(tag);
-                    return Array.prototype.filter.call(elements, function(element) {
-                        return RegExp(text).test(element.textContent);
-                    });
-                };
-                
-                // Add any animations that might be needed
-                // Items already have visible class in HTML now
-            }
-            
-            // Initialize responsive layout handling
+            // Function to handle responsive adjustments
             function handleResponsiveLayout() {
                 const viewportWidth = window.innerWidth;
                 
@@ -711,10 +782,16 @@
                         legend.classList.add('compact');
                     });
                     
-                    // Stack satisfaction metrics on mobile
-                    const satisfactionMetrics = document.querySelector('.satisfaction-metrics');
-                    if (satisfactionMetrics) {
-                        satisfactionMetrics.classList.add('stacked');
+                    // Stack reviews analysis on mobile
+                    const reviewsAnalysis = document.querySelector('.reviews-analysis');
+                    if (reviewsAnalysis) {
+                        reviewsAnalysis.classList.add('stacked');
+                    }
+                    
+                    // Make recommendation grid single column
+                    const recommendationsGrid = document.querySelector('.recommendations-grid');
+                    if (recommendationsGrid) {
+                        recommendationsGrid.classList.add('stacked');
                     }
                 } else {
                     // Desktop layout reset
@@ -726,30 +803,35 @@
                         legend.classList.remove('compact');
                     });
                     
-                    const satisfactionMetrics = document.querySelector('.satisfaction-metrics');
-                    if (satisfactionMetrics) {
-                        satisfactionMetrics.classList.remove('stacked');
+                    const reviewsAnalysis = document.querySelector('.reviews-analysis');
+                    if (reviewsAnalysis) {
+                        reviewsAnalysis.classList.remove('stacked');
+                    }
+                    
+                    const recommendationsGrid = document.querySelector('.recommendations-grid');
+                    if (recommendationsGrid) {
+                        recommendationsGrid.classList.remove('stacked');
                     }
                 }
                 
                 // Redraw charts to accommodate new sizes
-                if (typeof customerChart !== 'undefined') {
-                    customerChart.resize();
+                if (typeof productChart !== 'undefined' && productChart.resize) {
+                    productChart.resize();
                 }
                 
-                if (typeof segmentChart !== 'undefined') {
-                    segmentChart.resize();
+                if (typeof categoryChart !== 'undefined' && categoryChart.resize) {
+                    categoryChart.resize();
                 }
             }
-            
-            // Run the safe animations
-            safelyAddAnimations();
             
             // Initialize responsive handling
             window.addEventListener('resize', handleResponsiveLayout);
             handleResponsiveLayout();
         });
     </script>
+    
+    <script>
+        </script>
     
     <!-- Schedule Report Modal -->
     <div class="modal" id="scheduleReportModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -765,7 +847,7 @@
                     <form id="scheduleReportForm">
                         <div class="form-group">
                             <label for="reportName">Report Name</label>
-                            <input type="text" class="form-control" id="reportName" placeholder="Customer Insights Report" value="Customer Insights Report">
+                            <input type="text" class="form-control" id="reportName" placeholder="Product Analytics Report" value="Product Analytics Report">
                         </div>
                         <div class="form-group">
                             <label for="frequency">Frequency</label>

@@ -268,6 +268,31 @@
 .sidebar-toggle:hover {
     background-color: rgba(255, 255, 255, 0.1); /* Very subtle background on hover */
 }
+
+.main-content {
+    width: calc(100vw - var(--sidebar-width));
+    overflow-x: hidden;
+}
+
+.sidebar-collapsed .main-content {
+    width: calc(100vw - var(--sidebar-collapsed-width));
+}
+
+.content {
+    max-width: 100%;
+    padding: 24px 24px 24px 28px; /* Adjust padding for collapsed state */
+}
+
+/* Prevent horizontal overflow */
+body {
+    overflow-x: hidden;
+}
+
+/* Optional: Ensure charts resize properly */
+.chart-wrapper canvas {
+    max-width: 100%;
+    height: auto !important;
+}
         
         .sidebar-menu {
             padding: 16px 0;
@@ -833,6 +858,8 @@
         .status-low::before {
             background-color: var(--status-red-text);
         }
+
+        
         
         /* Animations */
         @keyframes fadeIn {
@@ -1043,7 +1070,7 @@
             <h2>Mindful Metrics</h2>
         </div>
         <div class="sidebar-menu">
-            <a href="#" class="active">
+            <a href="/" class="active">
                 <i class="sidebar-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="3" width="7" height="7"></rect>
@@ -1054,7 +1081,7 @@
                 </i>
                 <span>Dashboard</span>
             </a>
-            <a href="#">
+            <a href="/reports">
                 <i class="sidebar-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -1076,7 +1103,7 @@
                 </i>
                 <span>Recipes</span>
             </a>
-            <a href="#">
+            <a href="/reports/inventory">
                 <i class="sidebar-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
@@ -1084,7 +1111,7 @@
                 </i>
                 <span>Inventory</span>
             </a>
-            <a href="#">
+            <a href="/reports/customers">
                 <i class="sidebar-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="8" y1="6" x2="21" y2="6"></line>
@@ -1095,12 +1122,22 @@
                         <line x1="3" y1="18" x2="3.01" y2="18"></line>
                     </svg>
                 </i>
-                <span>Categories</span>
+                <span>Customers</span>
+            </a>
+            <a href="/reports/products">
+                <i class="sidebar-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                </i>
+                <span>Products</span>
             </a>
             
             <div class="menu-section">
                 <div class="menu-label">Administration</div>
-                <a href="#">
+                <a href="/user-profile">
                     <i class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
