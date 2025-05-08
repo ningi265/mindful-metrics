@@ -18,7 +18,7 @@
             <line x1="8" y1="2" x2="8" y2="6"></line>
             <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
-        Today: May 6, 2025
+        Today: {{ \Carbon\Carbon::now()->format('F j, Y') }}
     </div>
 </div>
 @endsection
@@ -511,26 +511,48 @@
     <!-- JavaScript for Profile Page -->
     <script>
         // Function to preview avatar image
-        function previewAvatar(input) {
-            const previewImg = document.getElementById('avatar-preview-img');
-            const previewPlaceholder = document.getElementById('avatar-preview-placeholder');
-            const fileName = document.querySelector('.file-name');
+      // Function to preview avatar image
+function previewAvatar(input) {
+    const modalPreviewImg = document.getElementById('avatar-preview-img');
+    const modalPreviewPlaceholder = document.getElementById('avatar-preview-placeholder');
+    const profileAvatarImg = document.querySelector('.profile-avatar img');
+    const profileAvatarPlaceholder = document.querySelector('.profile-avatar-placeholder');
+    const fileName = document.querySelector('.file-name');
+    
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            // Update modal preview
+            if (modalPreviewImg) {
+                modalPreviewImg.src = e.target.result;
+                modalPreviewImg.classList.remove('hidden');
+            }
+            if (modalPreviewPlaceholder) {
+                modalPreviewPlaceholder.classList.add('hidden');
+            }
             
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
+            // Update main profile avatar
+            if (profileAvatarImg) {
+                profileAvatarImg.src = e.target.result;
+            } else {
+                // If there was no image before (only placeholder)
+                const newImg = document.createElement('img');
+                newImg.src = e.target.result;
+                newImg.alt = "{{ $user->name }}";
+                document.querySelector('.profile-avatar').innerHTML = '';
+                document.querySelector('.profile-avatar').appendChild(newImg);
                 
-                reader.onload = function(e) {
-                    previewImg.src = e.target.result;
-                    previewImg.classList.remove('hidden');
-                    if (previewPlaceholder) {
-                        previewPlaceholder.classList.add('hidden');
-                    }
+                if (profileAvatarPlaceholder) {
+                    profileAvatarPlaceholder.remove();
                 }
-                
-                reader.readAsDataURL(input.files[0]);
-                fileName.textContent = input.files[0].name;
             }
         }
+        
+        reader.readAsDataURL(input.files[0]);
+        fileName.textContent = input.files[0].name;
+    }
+}
         
         // Tab navigation
         document.addEventListener('DOMContentLoaded', function() {
@@ -572,5 +594,102 @@
                 }, 5000);
             }
         });
+
+        // Handle avatar form submission with AJAX
+    const avatarForm = document.querySelector('.avatar-form');
+    if (avatarForm) {
+        avatarForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update avatar in both places
+                    const avatarUrl = data.avatar_url + '?' + new Date().getTime(); // Add timestamp to prevent caching
+                    
+                    // Update modal preview
+                    const modalPreviewImg = document.getElementById('avatar-preview-img');
+                    if (modalPreviewImg) {
+                        modalPreviewImg.src = avatarUrl;
+                    }
+                    
+                    // Update main profile avatar
+                    const profileAvatarImg = document.querySelector('.profile-avatar img');
+                    if (profileAvatarImg) {
+                        profileAvatarImg.src = avatarUrl;
+                    } else {
+                        // If there was no image before (only placeholder)
+                        const newImg = document.createElement('img');
+                        newImg.src = avatarUrl;
+                        newImg.alt = "{{ $user->name }}";
+                        document.querySelector('.profile-avatar').innerHTML = '';
+                        document.querySelector('.profile-avatar').appendChild(newImg);
+                    }
+                    
+                    // Close modal
+                    document.getElementById('avatar-upload-modal').classList.add('hidden');
+                    
+                    // Show success message
+                    showStatusMessage('avatar-updated');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    }
+    function showStatusMessage(type) {
+        // Create or update status message
+        let statusMessage = document.querySelector('.status-message');
+        if (!statusMessage) {
+            statusMessage = document.createElement('div');
+            statusMessage.className = 'status-message';
+            document.querySelector('.profile-container').prepend(statusMessage);
+        }
+        
+        statusMessage.className = 'status-message ' + type;
+        
+        let statusIcon = statusMessage.querySelector('.status-icon');
+        if (!statusIcon) {
+            statusIcon = document.createElement('div');
+            statusIcon.className = 'status-icon';
+            statusMessage.appendChild(statusIcon);
+        }
+        
+        statusIcon.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+        `;
+        
+        let statusContent = statusMessage.querySelector('.status-content');
+        if (!statusContent) {
+            statusContent = document.createElement('div');
+            statusContent.className = 'status-content';
+            statusMessage.appendChild(statusContent);
+        }
+        
+        if (type === 'avatar-updated') {
+            statusContent.textContent = 'Profile picture updated successfully';
+        }
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            statusMessage.classList.add('status-hide');
+            setTimeout(() => {
+                statusMessage.remove();
+            }, 500);
+        }, 5000);
+    }
     </script>
 @endsection

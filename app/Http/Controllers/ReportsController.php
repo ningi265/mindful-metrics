@@ -610,14 +610,7 @@ public function products(Request $request)
         'product_variants' => $productVariants,
         'category_distribution' => $categoryDistribution,
         'ratings_distribution' => $ratingsDistribution,
-        'feedback_topics' => $feedbackTopics,
-        'category_distribution' => [
-            ['category' => 'Appetizers', 'value' => 35],
-            ['category' => 'Main Courses', 'value' => 25],
-            ['category' => 'Desserts', 'value' => 15],
-            ['category' => 'Beverages', 'value' => 20],
-            ['category' => 'Others', 'value' => 5]
-        ],
+        'feedback_topics' => $feedbackTopics
     ];
     
     // Generate product performance data

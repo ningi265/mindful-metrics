@@ -1160,9 +1160,12 @@ body {
             </div>
             
             <div class="user-menu">
-                <div class="user-avatar">TU</div>
-                <span>Test User</span>
-            </div>
+    <div class="user-avatar">
+        {{ collect(explode(' ', Auth::user()->name))->map(fn($part) => strtoupper(substr($part, 0, 1)))->join('') }}
+    </div>
+    <span>{{ Auth::user()->name }}</span>
+</div>
+
         </div>
     </div>
 

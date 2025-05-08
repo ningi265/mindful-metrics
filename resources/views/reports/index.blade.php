@@ -22,7 +22,7 @@
                 <line x1="8" y1="2" x2="8" y2="6"></line>
                 <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
-            Today: May 6, 2025
+            Today: {{ \Carbon\Carbon::now()->format('F j, Y') }}
         </div>
     </div>
 
@@ -150,7 +150,7 @@
                     </div>
                 </a>
                 
-                <a href="#" class="category-card products animate-hover">
+                <a href="{{ route('reports.products') }}" class="category-card products animate-hover">
                     <div class="category-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>

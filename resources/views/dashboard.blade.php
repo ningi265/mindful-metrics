@@ -23,7 +23,7 @@
             <line x1="8" y1="2" x2="8" y2="6"></line>
             <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
-        Today: May 6, 2025
+        Today: {{ \Carbon\Carbon::now()->format('F j, Y') }}
     </div>
 </div>
 @endsection
@@ -121,24 +121,16 @@
     <x-data-table 
     title="Active Orders"
     icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>'
-    :columns="['Order ID', 'Amount', 'Status']"
-    :rows="[
-        ['ORD-9012', 'K98,567.62', 'Ready'],
-        ['ORD-3416', 'K85,752.38', 'Pending'],
-        ['ORD-2120', 'K252,378.67', 'Ready']
-    ]"
+      :columns="['Order ID', 'Name', 'Amount', 'Status']"
+    :rows="$orders->map(fn($order) => [$order->id, $order->name, $order->amount, $order->status])->toArray()"
     viewAllLink="/orders"
 />
 
 <x-data-table 
     title="Inventory Status"
     icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>'
-    :columns="['Name', 'In Stock', 'Minimum Threshold', 'Status']"
-    :rows="[
-        ['Jam', '1', '71', 'Low Stock'],
-        ['Pepper', '1', '39', 'Low Stock'],
-        ['Olive Oil', '4', '65', 'Low Stock']
-    ]"
+   :columns="['Name', 'In Stock', 'Minimum Threshold', 'Status']"
+            :rows="$inventory->map(fn($item) => [$item->name, $item->in_stock, $item->minimum_threshold, $item->status])->toArray()"
     viewAllLink="/inventory"
 />
     </div>
