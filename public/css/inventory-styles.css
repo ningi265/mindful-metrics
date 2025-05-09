@@ -985,3 +985,91 @@
         gap: 12px;
     }
 }
+
+/* Add these styles to both inventory-styles.css and sales-styles.css 
+   (they already exist in products-styles.css) */
+
+.insights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.insight-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background-color: var(--content-bg);
+    border-radius: var(--border-radius-md);
+    transition: all var(--transition-speed);
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.insight-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.4s ease-out;
+}
+
+.insight-item:hover {
+    background-color: var(--border-color);
+}
+
+.insight-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--border-radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.insight-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: white;
+}
+
+.insight-icon.positive {
+    background-color: var(--accent-green);
+}
+
+.insight-icon.neutral {
+    background-color: var(--accent-blue);
+}
+
+.insight-icon.negative {
+    background-color: var(--accent-red);
+}
+
+.insight-content {
+    flex: 1;
+}
+
+.insight-content h4 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0 0 8px;
+    color: var(--primary-text);
+}
+
+.insight-content p {
+    font-size: 0.875rem;
+    color: var(--secondary-text);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Animation for fading in elements */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: calc(var(--animation-order, 0) * 0.1s);
+    opacity: 0;
+}

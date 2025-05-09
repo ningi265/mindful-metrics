@@ -124,7 +124,7 @@
                         </svg>
                     </div>
                     <div class="metric-content">
-                        <h3>${{ number_format($customerMetrics['avg_lifetime_value'], 2) }}</h3>
+                        <h3>K{{ number_format($customerMetrics['avg_lifetime_value'], 2) }}</h3>
                         <p>Avg. Lifetime Value</p>
                         <div class="metric-trend positive">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

@@ -291,13 +291,13 @@
             </div>
             
             <!-- Key Insights -->
-            <div class="report-card">
+           <div class="report-card">
                 <div class="card-header">
                     <h3>Key Insights</h3>
                 </div>
                 <div class="card-content">
                     <div class="insights-list">
-                        <div class="insight-item">
+                        <div class="insight-item visible">
                             <div class="insight-icon positive">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -306,34 +306,38 @@
                             </div>
                             <div class="insight-content">
                                 <h4>Improved Turnover Rate</h4>
-                                <p>The inventory turnover rate has increased by 7.3% compared to the previous period, indicating more efficient inventory management.</p>
+                                   <p>The inventory turnover rate has increased by 7.3% compared to the previous period, indicating more efficient inventory management.</p>
+
                             </div>
                         </div>
                         
-                        <div class="insight-item">
-                            <div class="insight-icon neutral">
+                        <div class="insight-item visible">
+                            <div class="insight-icon positive">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="12" y1="16" x2="12" y2="12"></line>
-                                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    <polyline points="17 6 23 6 23 12"></polyline>
                                 </svg>
                             </div>
                             <div class="insight-content">
-                                <h4>Stable Low Stock Levels</h4>
-                                <p>Low stock items have remained consistent at around {{ $inventoryMetrics['low_stock'] }} items, with no significant change from the previous period.</p>
+                              <h4>Stable Low Stock Levels</h4>
+                    <p>Low stock items have remained consistent at around {{ $inventoryMetrics['low_stock'] }} items, with no significant change from the previous period.</p>
+
                             </div>
                         </div>
                         
-                        <div class="insight-item">
+                        <div class="insight-item visible">
                             <div class="insight-icon negative">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
                                 </svg>
                             </div>
                             <div class="insight-content">
-                                <h4>Jam and Pepper Critical</h4>
-                                <p>Jam and Pepper inventory levels are critically low at 1 unit each, requiring immediate replenishment to avoid stockouts.</p>
+                                <h4>Main Warehouse Efficiency</h4>
+                    <p>The main warehouse shows a 5.2% improvement in storage efficiency, with better space utilization and organization.</p>
+
+
                             </div>
                         </div>
                     </div>
