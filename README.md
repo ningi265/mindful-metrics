@@ -105,9 +105,14 @@ npm run dev
 Open your browser and navigate to [http://localhost:8000](http://localhost:8000)
 
 4. **Login credentials**
+-Create your login credentials with this **Path**: `/register`
 
+Example register credentials
 - Email: admin@example.com
-- Password: password
+- Password: securepassword
+
+**Path**: `/login`
+
 
 ## Key Pages and Features
 
@@ -120,7 +125,7 @@ The main dashboard provides an overview of key metrics including:
 - Top-selling products
 - Recent customer activity
 
-**Path**: `/dashboard` or `/`
+**Path**: `/dashboard` 
 
 ### Reports
 
